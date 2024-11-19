@@ -13,8 +13,8 @@ module "avm-res-storageaccount" {
   resource_group_name = module.resource_group.name
   location            = var.location
   name                = "${var.storage_account_name}-${var.environment_name}"
-  sku                  = "Standard_LRS"
-  kind                 = "StorageV2"
-  enable_https_traffic_only = true
+  account_tier        = "Standard"
+  account_kind        = "StorageV2"
+  https_traffic_only_enabled = true
   depends_on          = [module.resource_group]
 }
