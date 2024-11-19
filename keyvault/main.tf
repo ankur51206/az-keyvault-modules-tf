@@ -10,7 +10,7 @@ module "avm-res-keyvault-vault" {
   version             = "0.9.1"
   resource_group_name = module.resource_group.name
   location            = var.location
-  name                = "${var.key_vault_name}-${var.environment_name}"  # Use `name` instead of `key_vault_name`
+  name                = "${var.key_vault_name}-${var.environment_name}"
   tenant_id           = var.tenant_id
   legacy_access_policies_enabled = true
   legacy_access_policies = {
