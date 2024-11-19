@@ -137,7 +137,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: '1.4.0'
+          terraform_version: 'latest'
 
       - name: Download Terraform Plan Artifact
         uses: actions/download-artifact@v3
@@ -182,7 +182,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: '1.4.0'
+          terraform_version: 'latest'
 
       - name: Download Terraform Plan Artifact
         uses: actions/download-artifact@v3
@@ -233,7 +233,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
-          terraform_version: '1.4.0'
+          terraform_version: 'latest'
 
       - name: Download Destroy Plan Artifact
         uses: actions/download-artifact@v3
