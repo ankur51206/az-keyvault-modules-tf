@@ -1,12 +1,12 @@
 module "resource_group" {
-  source              = "claranet/rg/azurerm"
+  source              = "data-platform-hq/resource-group/azurerm"
   version             = "latest"
   resource_group_name = "${var.resource_group_name}-${var.environment_name}"
   location            = var.location
 }
 
 module "key_vault" {
-  source              = "claranet/keyvault/azurerm"
+  source              = "getindata/keyvault/azurerm"
   version             = "latest"
   resource_group_name = module.resource_group.name
   location            = var.location
