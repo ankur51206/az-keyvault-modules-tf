@@ -1,5 +1,5 @@
 module "resource_group" {
-  source              = "data-platform-hq/resource-group/azurerm"
+  source              = "Azure/resource-group/azurerm"
   version             = "latest"
   resource_group_name = "${var.resource_group_name}-${var.environment_name}"
   location            = var.location
