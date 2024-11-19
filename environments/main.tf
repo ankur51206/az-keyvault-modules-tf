@@ -1,8 +1,7 @@
 module "resource_group" {
   source  = "Azure/avm-res-resources-resourcegroup/azurerm"
   version = "0.1.0"
-
-  resource_group_name = "${var.resource_group_name}-${var.environment_name}"
+  name = "${var.resource_group_name}-${var.environment_name}"
   location            = var.location
 }
 
