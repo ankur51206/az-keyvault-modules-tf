@@ -1,4 +1,4 @@
-ariable "client_id" {
+variable "client_id" {
   description = "Azure Service Principal Client ID"
   type        = string
 }
