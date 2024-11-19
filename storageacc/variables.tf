@@ -19,6 +19,11 @@ variable "tenant_id" {
   type        = string
 }
 
+variable "object_id" {
+  description = "The object ID of the user or service principal."
+  type        = string
+}
+
 variable "resource_group_name" {
   description = "Name of the resource group"
   type        = string
