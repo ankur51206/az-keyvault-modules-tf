@@ -1,12 +1,13 @@
 module "resource_group" {
-  source              = "Azure/resource-group/azurerm"
-  version             = "latest"
+  source  = "Azure/avm-res-resources-resourcegroup/azurerm"
+  version = "0.1.0"
+
   resource_group_name = "${var.resource_group_name}-${var.environment_name}"
   location            = var.location
 }
 
-module "key_vault" {
-  source              = "getindata/keyvault/azurerm"
+module "avm-res-keyvault-vault" {
+  source              = "Azure/avm-res-keyvault-vault/azurerm"
   version             = "latest"
   resource_group_name = module.resource_group.name
   location            = var.location
