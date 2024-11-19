@@ -8,7 +8,7 @@ module "resource_group" {
 
 
 module "avm-res-storageaccount" {
-  source              = "Azure/avm-res-storageaccount/azurerm"
+  source              = "Azure/avm-res-storage-storageaccount/azurerm"
   version             = "0.2.7"  # You can specify the latest version
   resource_group_name = module.resource_group.name
   location            = var.location
