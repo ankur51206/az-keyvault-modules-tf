@@ -53,13 +53,13 @@ jobs:
       - name: Set Working Directory
         run: |
           echo "## Setting Working Directory"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
 
       - name: Create backend.tf
         run: |
           echo "## Creating backend.tf"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           REPO_NAME=$(echo "${{ github.repository }}" | cut -d'/' -f2)
           STORAGE_ACCOUNT_NAME="${{ github.event.inputs.storage_account_name }}"
           if [ -z "$STORAGE_ACCOUNT_NAME" ]; then
@@ -79,7 +79,7 @@ jobs:
       - name: Create terraform.tfvars
         run: |
           echo "## Creating terraform.tfvars"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           STORAGE_ACCOUNT_NAME="${{ github.event.inputs.storage_account_name }}"
           if [ -z "$STORAGE_ACCOUNT_NAME" ]; then
             STORAGE_ACCOUNT_NAME="sample-storage-account"  # Fallback value if not provided
@@ -97,7 +97,7 @@ jobs:
       - name: Initialize Terraform
         run: |
           echo "## Initializing Terraform"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform init || { echo "Terraform init failed"; exit 1; }
         env:
@@ -109,7 +109,7 @@ jobs:
       - name: Plan Terraform Changes
         run: |
           echo "## Planning Terraform Changes"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform plan -var-file=terraform.tfvars -out=tfplan || { echo "Terraform plan failed"; exit 1; }
           echo "## Terraform Plan Completed"
@@ -123,7 +123,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: terraform-artifacts
-          path: ./storage_account
+          path: ./storageacc
 
   apply:
     runs-on: ubuntu-latest
@@ -143,12 +143,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: terraform-artifacts
-          path: ./storage_account
+          path: ./storageacc
 
       - name: Reinitialize Terraform (Apply)
         run: |
           echo "## Reinitializing Terraform for Apply"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform init -upgrade || { echo "Terraform init failed"; exit 1; }
         env:
@@ -160,7 +160,7 @@ jobs:
       - name: Apply Terraform Changes
         run: |
           echo "## Applying Terraform Changes"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform apply -auto-approve tfplan || { echo "Terraform apply failed"; exit 1; }
           echo "## Terraform Apply Completed"
@@ -188,12 +188,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: terraform-artifacts
-          path: ./storage_account
+          path: ./storageacc
 
       - name: Reinitialize Terraform (Destroy Plan)
         run: |
           echo "## Reinitializing Terraform for Destroy Plan"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform init -upgrade || { echo "Terraform init failed"; exit 1; }
         env:
@@ -205,7 +205,7 @@ jobs:
       - name: Plan Terraform Destroy
         run: |
           echo "## Planning Terraform Destroy"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform plan -destroy -var-file=terraform.tfvars -out=tfplan.destroy || { echo "Terraform destroy plan failed"; exit 1; }
           echo "## Terraform Destroy Plan Completed"
@@ -219,7 +219,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: terraform-destroy-plan
-          path: ./storage_account
+          path: ./storageacc
 
   destroy-apply:
     runs-on: ubuntu-latest
@@ -239,12 +239,12 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: terraform-destroy-plan
-          path: ./storage_account
+          path: ./storageacc
 
       - name: Reinitialize Terraform (Destroy Apply)
         run: |
           echo "## Reinitializing Terraform for Destroy Apply"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform init -upgrade || { echo "Terraform init failed"; exit 1; }
         env:
@@ -256,7 +256,7 @@ jobs:
       - name: Apply Terraform Destroy
         run: |
           echo "## Applying Terraform Destroy"
-          ENV_PATH="./storage_account"
+          ENV_PATH="./storageacc"
           cd "$ENV_PATH" || exit 1
           terraform apply -auto-approve tfplan.destroy || { echo "Terraform destroy failed"; exit 1; }
           echo "## Terraform Destroy Completed"
